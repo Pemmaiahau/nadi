@@ -1,0 +1,25 @@
+{
+  "name": "nadi-jyotish",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Bhrigu Nadi astrology dashboard with Swiss Ephemeris, 150-part Nadi Amsha math and interactive birth time rectification",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "verify": "node scripts/verify-engine.mjs && node scripts/verify-chart-geometry.mjs"
+  },
+  "dependencies": {
+    "luxon": "^3.7.2",
+    "next": "^16.3.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "sweph": "2.10.3-7"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}

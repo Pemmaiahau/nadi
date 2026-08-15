@@ -1,0 +1,10 @@
+node_modules/
+.next/
+out/
+build/
+.env*.local
+.DS_Store
+*.log
+
+# Swiss Ephemeris data files (large binaries, downloaded separately - see README)
+ephe/*.se1
