@@ -1,0 +1,7 @@
+# Swiss Ephemeris data files are binary. Without this, a clone under
+# core.autocrlf=true could rewrite byte pairs that happen to look like line
+# endings and silently corrupt the ephemeris.
+*.se1 binary
+
+# Native addon prebuilds, if they are ever vendored.
+*.node binary

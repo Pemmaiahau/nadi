@@ -11,9 +11,13 @@
 # with a [[plugins]] block unless you need a specific version, since the managed
 # install always picks up security patches.
 
-# If a deploy succeeds but /api/calculate fails at runtime with
-# "No Swiss Ephemeris binding found", Next's file tracing did not carry the
-# native .node prebuild into the function bundle. Uncomment to force it:
-# [functions]
-#   external_node_modules = ["sweph"]
-#   included_files = ["node_modules/sweph/**"]
+[functions]
+  # lib/ephemeris.js finds the .se1 files with a runtime readdirSync, which
+  # Next's static file tracing cannot follow, so they have to be named here or
+  # the deployed function silently falls back to Moshier.
+  included_files = ["ephe/**"]
+
+  # If a deploy succeeds but /api/calculate fails at runtime with
+  # "No Swiss Ephemeris binding found", the native .node prebuild also missed
+  # the bundle. Uncomment to force it:
+  # external_node_modules = ["sweph"]
