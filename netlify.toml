@@ -1,0 +1,19 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  # Next 16 needs Node 20.9+. Pinning keeps the sweph N-API prebuild that gets
+  # resolved at build time on Netlify's linux-x64 builder matched to runtime.
+  NODE_VERSION = "22"
+
+# The Next.js runtime is auto-detected and installed by Netlify - do not pin it
+# with a [[plugins]] block unless you need a specific version, since the managed
+# install always picks up security patches.
+
+# If a deploy succeeds but /api/calculate fails at runtime with
+# "No Swiss Ephemeris binding found", Next's file tracing did not carry the
+# native .node prebuild into the function bundle. Uncomment to force it:
+# [functions]
+#   external_node_modules = ["sweph"]
+#   included_files = ["node_modules/sweph/**"]

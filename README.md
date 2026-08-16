@@ -39,11 +39,25 @@ ephemeris. That is accurate to roughly **0.1″ for the planets and ~1″ for th
 1800–2100 — comfortably inside the 12-arcminute Nadi Amsha grid, so every reading in this app
 is unaffected. For full Swiss precision:
 
-1. Download `sepl_18.se1` and `semo_18.se1` from
-   <https://www.astro.com/ftp/swisseph/ephe/>
-2. Drop them into `./ephe/` (or set `SE_EPHE_PATH`).
+1. Download `sepl_18.se1` (planets) and `semo_18.se1` (Moon) into `./ephe/`
+   (or any directory pointed at by `SE_EPHE_PATH`):
 
-The app detects them on boot and the header switches from `moshier` to `swiss-ephemeris`.
+   ```bash
+   mkdir -p ephe && cd ephe
+   curl -sSL -O https://raw.githubusercontent.com/aloistr/swisseph/master/ephe/sepl_18.se1 \
+              -O https://raw.githubusercontent.com/aloistr/swisseph/master/ephe/semo_18.se1
+   ```
+
+2. Confirm they are real: `sepl_18.se1` is ~484 KB, `semo_18.se1` is ~1.3 MB, and both
+   begin with the ASCII string `SWISSEPH`. Anything around 2.6 KB is a saved HTML error
+   page — `curl -O` writes those to the target filename without complaint, and the app
+   will quietly stay on Moshier.
+
+   The old Astrodienst path (`astro.com/ftp/swisseph/ephe/`) now 404s; the
+   [official Swiss Ephemeris repo](https://github.com/aloistr/swisseph) is the live source.
+
+Run `npm run verify` to check. The header switches from `moshier` to `swiss-ephemeris`,
+and the ephemeris block reports `note: 'Using full Swiss Ephemeris data files.'`
 
 ---
 
